@@ -13,5 +13,6 @@ public class ExpressionTests
 
         Assert.True(parseResult.Success);
         Assert.IsType<ABLBinaryOperator>(parseResult.Value);
+        Assert.Equal(source, parseResult.Value.ToString());
     }
 }

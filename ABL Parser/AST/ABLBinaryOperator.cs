@@ -11,5 +11,10 @@
             Alpha = alpha;
             Omega = omega;
         }
+
+        public override string ToString()
+        {
+            return $"{Alpha} {Type} {Omega}";
+        }
     }
 }

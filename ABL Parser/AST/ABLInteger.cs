@@ -1,11 +1,13 @@
-﻿namespace ABL_Parser
+﻿namespace ABL_Parser;
+
+internal class ABLInteger : ABLExpression
 {
-    internal class ABLInteger : ABLExpression
+    public string Value { get; private set; }
+    public ABLInteger(string value)
     {
-        public string Value { get; private set; }
-        public ABLInteger(string value)
-        {
-            Value = value;
-        }
+        Value = value;
     }
+
+    public override string ToString() =>
+        Value;
 }
