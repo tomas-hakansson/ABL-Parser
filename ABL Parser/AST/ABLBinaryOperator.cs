@@ -14,7 +14,7 @@
 
         public override string ToString()
         {
-            return $"{Alpha} {Type} {Omega}";
+            return $"{Alpha} {Omega} {Type}";
         }
     }
 }

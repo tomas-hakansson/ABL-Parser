@@ -35,10 +35,28 @@ namespace ABL_Parser
                         {
                             var omega = output.Pop();
                             var alpha = output.Pop();
-                            ABLBinaryOperator temp = new(ops.Pop().Value, alpha, omega);
-                            output.Push(temp);
+                            output.Push(new ABLBinaryOperator(ops.Pop().Value, alpha, omega));
                         }
                         ops.Push(ct);
+                        break;
+                    case TokenType.OpeningParenthesis:
+                        ops.Push(ct);
+                        break;
+                    case TokenType.ClosingParenthesis:
+                        while (ops.Any() && ops.Peek().Type != TokenType.OpeningParenthesis)
+                        {
+                            var omega = output.Pop();
+                            var alpha = output.Pop();
+                            output.Push(new ABLBinaryOperator(ops.Pop().Value, alpha, omega));
+                        }
+                        if (ops.Any())
+                        {
+                            ops.Pop();
+                        }
+                        else
+                        {
+                            //error: mismatched parentheses.
+                        }
                         break;
                     default:
                         break;
@@ -49,8 +67,7 @@ namespace ABL_Parser
             {
                 var omega = output.Pop();
                 var alpha = output.Pop();
-                ABLBinaryOperator tempus = new(op.Value, alpha, omega);
-                output.Push(tempus);
+                output.Push(new ABLBinaryOperator(op.Value, alpha, omega));
             }
 
             return new(true, output.Pop());

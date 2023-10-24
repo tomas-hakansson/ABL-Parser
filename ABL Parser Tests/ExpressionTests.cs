@@ -13,6 +13,18 @@ public class ExpressionTests
 
         Assert.True(parseResult.Success);
         Assert.IsType<ABLBinaryOperator>(parseResult.Value);
-        Assert.Equal(source, parseResult.Value.ToString());
+        Assert.Equal("2 3 4 * +", parseResult.Value.ToString());
+    }
+
+    [Fact]
+    public void CanParseParenthesisedExpression()
+    {
+        var source = "( 2 + 3 ) * 4";
+        Tokenizer tokenizer = new(source);
+        ParseResult parseResult = ABLExpression.Create(tokenizer);
+
+        Assert.True(parseResult.Success);
+        Assert.IsType<ABLBinaryOperator>(parseResult.Value);
+        Assert.Equal("2 3 + 4 *", parseResult.Value.ToString());
     }
 }

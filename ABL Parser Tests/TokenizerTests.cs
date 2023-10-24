@@ -54,4 +54,31 @@ public class TokenizerTests
             Assert.Equal(TokenType.Operator, token.Type);
         }
     }
+
+    [Fact]
+    public void CanTokenizeParentheses()
+    {
+        var source = " ( expression ) ";
+        Tokenizer tokenizer = new(source);
+        
+        var token = tokenizer.NextInLine();
+        if (token == null)
+            Assert.Fail("should never happen");
+        else
+        {
+            Assert.Equal("(", token.Value);
+            Assert.Equal(TokenType.OpeningParenthesis, token.Type);
+        }
+
+        tokenizer.NextInLine();
+
+        token = tokenizer.NextInLine();
+        if (token == null)
+            Assert.Fail("should never happen");
+        else
+        {
+            Assert.Equal(")", token.Value);
+            Assert.Equal(TokenType.ClosingParenthesis, token.Type);
+        }
+    }
 }

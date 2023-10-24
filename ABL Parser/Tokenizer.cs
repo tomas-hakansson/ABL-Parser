@@ -46,6 +46,10 @@ public class Tokenizer
             type = TokenType.Integer;
         else if ("+*".Contains(token))
             type = TokenType.Operator;
+        else if (token == "(")
+            type = TokenType.OpeningParenthesis;
+        else if (token == ")")
+            type = TokenType.ClosingParenthesis;
         else
             type = TokenType.Placeholder;
         return type;

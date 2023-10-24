@@ -5,6 +5,8 @@
         Placeholder,
         Integer,
         Operator,
+        OpeningParenthesis,
+        ClosingParenthesis,
     }
 
     public class Token
